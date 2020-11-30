@@ -1,0 +1,17 @@
+name: Demo build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: go-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        docker run \
+        -v ${{ github.workspace }}:/srv/source go:latest go build
